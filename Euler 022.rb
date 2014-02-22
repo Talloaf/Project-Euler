@@ -10,44 +10,46 @@ What is the total of all the name scores in the file?
 =end
 
 
-names = File.read("Euler 22.txt").gsub(/\"/,'').split(/,/).sort
+def alphabetical_position(file)
 
-total = 0
+	names = File.read(file).gsub(/\"/,'').split(/,/).sort
+	total = 0
+	(0...names.size).each do |x|
+		letter_hash = {
+			"A" => 1,
+			"B" => 2,
+			"C" => 3,
+			"D" => 4,
+			"E" => 5,
+			"F" => 6,
+			"G" => 7,
+			"H" => 8,
+			"I" => 9,
+			"J" => 10,
+			"K" => 11,
+			"L" => 12,
+			"M" => 13,
+			"N" => 14,
+			"O" => 15,
+			"P" => 16,
+			"Q" => 17,
+			"R" => 18,
+			"S" => 19,
+			"T" => 20,
+			"U" => 21,
+			"V" => 22,
+			"W" => 23,
+			"X" => 24,
+			"Y" => 25,
+			"Z" => 26
+		}
 
-(0...names.size).each do |x|
-	letter_hash = {
-		"A" => 1,
-		"B" => 2,
-		"C" => 3,
-		"D" => 4,
-		"E" => 5,
-		"F" => 6,
-		"G" => 7,
-		"H" => 8,
-		"I" => 9,
-		"J" => 10,
-		"K" => 11,
-		"L" => 12,
-		"M" => 13,
-		"N" => 14,
-		"O" => 15,
-		"P" => 16,
-		"Q" => 17,
-		"R" => 18,
-		"S" => 19,
-		"T" => 20,
-		"U" => 21,
-		"V" => 22,
-		"W" => 23,
-		"X" => 24,
-		"Y" => 25,
-		"Z" => 26
-	}
-
-	name = names[x].split(//)
-	name_total = 0
-	name.each {|y| name_total += letter_hash[y]}
-	total += (x+1) * name_total
+		name = names[x].split(//)
+		name_total = 0
+		name.each {|y| name_total += letter_hash[y]}
+		total += (x+1) * name_total
+	end
+	total
 end
 
-puts total
+puts alphabetical_position("Euler 022.txt")
